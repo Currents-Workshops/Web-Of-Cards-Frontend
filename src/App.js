@@ -4,17 +4,13 @@ import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
+  const [displaytoast, setdisplaytoast] = React.useState(false);
   return (
     <ChakraProvider>
-      {/* <Notification
-        variant="subtle"
-        title="Some title"
-        desc="This is a description"
-        duration={9000}
-        status="success"
-        isClosable={false}
-        position="bottom-left"
-      ></Notification> */}
+      {/* <button onClick={() => setdisplaytoast(true)}>button</button>
+      {displaytoast && (
+        <Notification title="hello" status="success" duration={9000} />
+      )} */}
     </ChakraProvider>
   );
 }
