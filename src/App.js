@@ -1,8 +1,11 @@
 import './App.css';
+import JoinCreate from './components/JoinCreate';
 
 function App() {
   return (
-    <div>Hello World</div>
+    <div>
+      <JoinCreate/>
+    </div>
   );
 }
 
