@@ -7,11 +7,12 @@ import Leaderboard from "./components/LeaderBoard";
 function App() {
   // const [displaytoast, setdisplaytoast] = React.useState(false);
   const arrayOfParticipants = [
-    { name: "Participant a", score: 4 },
-    { name: "Participant b", score: 11 },
-    { name: "Participant c", score: 10 },
-    { name: "Participant d", score: 12 },
-    { name: "Participant e", score: 13 },
+    { name: "Participant a", score: 4, isHost:false},
+    { name: "Participant b", score: 11,isHost:false },
+    { name: "Participant c", score: 10,isHost:false },
+    { name: "Participant d", score: 12,isHost:true},
+    { name: "Participant e", score: 13,isHost:false },
+  
   ];
   //sorting the array in descending order before passing as a prop.
   arrayOfParticipants.sort(function (a, b) {
@@ -20,8 +21,8 @@ function App() {
 
   return (
     <ChakraProvider>
-      <div width={200}>
-        <Leaderboard participants={arrayOfParticipants}></Leaderboard>
+      <div>
+        <Leaderboard participants={arrayOfParticipants} isHost={false}></Leaderboard>
       </div>
     </ChakraProvider>
   );
