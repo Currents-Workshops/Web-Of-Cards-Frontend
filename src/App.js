@@ -1,4 +1,5 @@
-import "./App.css";
+import './App.css';
+import JoinCreate from './components/JoinCreate';
 import Notification from "./components/Notification";
 import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
