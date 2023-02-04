@@ -29,7 +29,6 @@ function App() {
     
   ];
   return (
-    <ChakraProvider>
       <Flex
         height="600px"
         width="100%"
@@ -41,7 +40,6 @@ function App() {
           <Opponents opponents={OpponentsList1}></Opponents>
         </Box>
       </Flex>
-    </ChakraProvider>
   );
 }
 
