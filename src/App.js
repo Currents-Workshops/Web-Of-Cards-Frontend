@@ -21,11 +21,9 @@ function App() {
   });
 
   return (
-    <ChakraProvider>
       <div>
         <Leaderboard participants={arrayOfParticipants} isHost={false}></Leaderboard>
       </div>
-    </ChakraProvider>
   );
 }
 
