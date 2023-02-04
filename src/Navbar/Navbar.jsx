@@ -1,8 +1,10 @@
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {Flex, Box, Text,Button} from "@chakra-ui/react"
+import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({isStartButtonVisble}) => {
+  
   return (
     <nav className="navbar">
       <Flex
@@ -38,6 +40,13 @@ const Navbar = () => {
           </Flex>
         </Box>
         <Box>
+          {isStartButtonVisble && (
+        <Button backgroundColor={"#4299e1"} marginRight={"15px"}>
+            <Text fontSize="2xl" fontWeight="bold" color="white">
+              {/* <Link to="/about">About</Link> */}Start
+            </Text>
+          </Button>)}
+            
           <Button backgroundColor={"red"}>
             <Text fontSize="2xl" fontWeight="bold" color="white">
               {/* <Link to="/about">About</Link> */}Leave
