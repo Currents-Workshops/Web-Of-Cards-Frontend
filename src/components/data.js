@@ -68,21 +68,21 @@ export const symbols = [
   {
     id: 0,
     symbol: "♠",
-    name: "spade",
+    name: "S",
   },
   {
     id: 1,
     symbol: "♥",
-    name: "heart",
+    name: "H",
   },
   {
     id: 2,
     symbol: "♣",
-    name: "club",
+    name: "C",
   },
   {
     id: 3,
     symbol: "♦",
-    name: "diamond",
+    name: "D",
   },
 ];
