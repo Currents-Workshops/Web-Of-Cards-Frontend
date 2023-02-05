@@ -3,14 +3,14 @@
 import React from 'react';
 import { Box, Button, Flex, Input,  Stack  } from '@chakra-ui/react';
 
-export default function JoinCreate() {
+export default function JoinCreate({name,room,setName,setRoom,sendJsonMessage}) {
 
-    const [name, setName] = React.useState('');
-    const [room, setRoom] = React.useState('');
+    //const [name, setName] = React.useState('');
+    //const [room, setRoom] = React.useState('');
     const [nameborderfocus, setNameborderfocus] = React.useState(false);
     const [roomborderfocus, setroomborderfocus] = React.useState(false);
-    console.log(name, room);
-    console.log(nameborderfocus, roomborderfocus);
+    //console.log(name, room);
+    //console.log(nameborderfocus, roomborderfocus);
      
 
     
@@ -69,7 +69,7 @@ export default function JoinCreate() {
                             }}
                             onClick = {()=>{
                                 if (name && room) {
-                                    console.log("Join button clicked");
+                                    //console.log("Join button clicked");
                                 }
                                 else if (name && !room) {
                                     setroomborderfocus(true);
@@ -81,6 +81,12 @@ export default function JoinCreate() {
                                     setNameborderfocus(true);
                                     setroomborderfocus(true);
                                 }
+                                sendJsonMessage({
+                                    "type": "JoinGame",
+                                    "data": {
+                                        "game_code": room
+                                    }
+                                })
                             }}
                         >
                             JOIN
@@ -93,13 +99,16 @@ export default function JoinCreate() {
                             }}
                             onClick = {()=>{
                                 if (name) {
-                                    console.log("Create button clicked");
+                                    //console.log("Create button clicked");
                                 }
                                 
                                 
                                 else if (!name) {
                                     setNameborderfocus(true);
                                 }
+                                sendJsonMessage({
+                                    "type": "CreateGame"
+                                })
                             }}
                         >
                             CREATE
