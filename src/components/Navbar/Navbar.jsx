@@ -1,9 +1,8 @@
 import "./Navbar.css";
 // import { Link } from "react-router-dom";
 import {Flex, Box, Text,Button} from "@chakra-ui/react"
-import { useState } from "react";
 
-const Navbar = ({isStartButtonVisble}) => {
+const Navbar = ({isHost,room,name}) => {
   
   return (
     <nav className="navbar">
@@ -22,7 +21,7 @@ const Navbar = ({isStartButtonVisble}) => {
       >
         <Box>
           <Text fontSize="2xl" fontWeight="bold" color="white">
-            User Name
+            {name}
           </Text>
         </Box>
         <Box alignItems={"center"}>
@@ -35,12 +34,12 @@ const Navbar = ({isStartButtonVisble}) => {
             Game code
           </Text>
           <Text fontSize="xl" fontWeight="bold" color="white">
-           123654
+           {room}
           </Text>
           </Flex>
         </Box>
         <Box>
-          {isStartButtonVisble && (
+          {isHost && (
         <Button backgroundColor={"#4299e1"} marginRight={"15px"}>
             <Text fontSize="2xl" fontWeight="bold" color="white">
               {/* <Link to="/about">About</Link> */}Start

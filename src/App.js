@@ -11,6 +11,7 @@ import Opponents from "./components/Opponents";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import useWebSocket from "react-use-websocket";
+import generateOpponentArray from "./hook/opponent";
 
 const WS_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -19,25 +20,43 @@ function App() {
   const [isHost, setHost] = useState(false);
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
+  const [userId, setUserId] = useState("");
+  const [game,setGame] = useState({});
 
   const { sendJsonMessage } = useWebSocket(WS_URL, {
     onOpen: () => {
       console.log("WebSocket connection established.");
     },
-    onMessage: (data) => {
+    onMessage: (res) => {
       // handle messages from server
+      let data = JSON.parse(res.data)
       console.log(data);
+      switch (data.type) {
+
+        case "feedback":
+          if(data.data.user_id!=null) setUserId(data.data.user_id)
+          break;
+
+        case "new_game":
+          setPage("game");
+          setHost(true);
+          setRoom(data.data.game.code);
+          setGame(data.data.game);
+          break;
+        
+        case  "joined_game":
+          setPage("game");
+          setRoom(data.data.game.code);
+          setGame(data.data.game);
+          break;
+
+        default:
+          break;
+      }
     },
   });
 
   // test data
-  const OpponentsList1 = [
-    { name: "Player 1", id: "1122", isPlaying: true },
-    { name: "Player 2", id: "1334", isPlaying: false },
-    { name: "Player 3", id: "1565", isPlaying: false },
-    { name: "Player 4", id: "14656", isPlaying: false },
-    { name: "Player 5", id: "1464", isPlaying: false },
-  ];
   const arrayOfParticipants = [
     { name: "Participant a", score: 4 },
     { name: "Participant b", score: 11 },
@@ -45,7 +64,6 @@ function App() {
     { name: "Participant d", score: 12 },
     { name: "Participant e", score: 13 },
   ];
-  // // //
 
   switch (page) {
     case "join":
@@ -71,7 +89,7 @@ function App() {
     case "game":
       return (
         <>
-          <Navbar isStartButtonVisble={isHost} />
+          <Navbar isHost={isHost} room = {room} name = {name} />
           <Flex
             height="600px"
             width="100%"
@@ -80,7 +98,7 @@ function App() {
             alignItems="center"
           >
             <Box alignSelf="center">
-              <Opponents opponents={OpponentsList1}></Opponents>
+              <Opponents opponents={generateOpponentArray(game,userId)}></Opponents>
             </Box>
           </Flex>
         </>

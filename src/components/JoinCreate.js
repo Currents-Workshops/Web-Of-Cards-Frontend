@@ -69,7 +69,13 @@ export default function JoinCreate({name,room,setName,setRoom,sendJsonMessage}) 
                             }}
                             onClick = {()=>{
                                 if (name && room) {
-                                    //console.log("Join button clicked");
+                                    sendJsonMessage({
+                                        "type": "JoinGame",
+                                        "data": {
+                                            "game_code": room,
+                                            "name":name
+                                        }
+                                    })
                                 }
                                 else if (name && !room) {
                                     setroomborderfocus(true);
@@ -81,12 +87,6 @@ export default function JoinCreate({name,room,setName,setRoom,sendJsonMessage}) 
                                     setNameborderfocus(true);
                                     setroomborderfocus(true);
                                 }
-                                sendJsonMessage({
-                                    "type": "JoinGame",
-                                    "data": {
-                                        "game_code": room
-                                    }
-                                })
                             }}
                         >
                             JOIN
@@ -99,16 +99,16 @@ export default function JoinCreate({name,room,setName,setRoom,sendJsonMessage}) 
                             }}
                             onClick = {()=>{
                                 if (name) {
-                                    //console.log("Create button clicked");
+                                    sendJsonMessage({
+                                        "type": "CreateGame",
+                                        "data": {
+                                            "name":name
+                                        }
+                                    })
                                 }
-                                
-                                
                                 else if (!name) {
                                     setNameborderfocus(true);
                                 }
-                                sendJsonMessage({
-                                    "type": "CreateGame"
-                                })
                             }}
                         >
                             CREATE
