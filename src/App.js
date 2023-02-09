@@ -50,6 +50,10 @@ function App() {
           setGame(data.data.game);
           break;
 
+        case "start_game":
+          setGame(data.data.game);
+          break;
+
         default:
           break;
       }
@@ -76,12 +80,6 @@ function App() {
             room={room}
             sendJsonMessage={sendJsonMessage}
           />
-          <div>
-            <Card rank="2" suit="S" />
-          </div>
-          <div className="App">
-            <CardsWrapper cardsNumber="7" />
-          </div>
         </>
       );
     case "leaderboard":
@@ -89,7 +87,7 @@ function App() {
     case "game":
       return (
         <>
-          <Navbar isHost={isHost} room = {room} name = {name} />
+          <Navbar isHost={isHost} room = {room} name = {name} sendJsonMessage={sendJsonMessage} />
           <Flex
             height="600px"
             width="100%"
@@ -101,6 +99,12 @@ function App() {
               <Opponents opponents={generateOpponentArray(game,userId)}></Opponents>
             </Box>
           </Flex>
+          <div>
+            <Card rank="2" suit="S" />
+          </div>
+          <div className="App">
+            <CardsWrapper cardsNumber="7" />
+          </div>
         </>
       );
     default:

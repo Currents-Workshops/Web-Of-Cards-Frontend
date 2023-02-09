@@ -2,7 +2,7 @@ import "./Navbar.css";
 // import { Link } from "react-router-dom";
 import {Flex, Box, Text,Button} from "@chakra-ui/react"
 
-const Navbar = ({isHost,room,name}) => {
+const Navbar = ({isHost,room,name,sendJsonMessage}) => {
   
   return (
     <nav className="navbar">
@@ -40,9 +40,13 @@ const Navbar = ({isHost,room,name}) => {
         </Box>
         <Box>
           {isHost && (
-        <Button backgroundColor={"#4299e1"} marginRight={"15px"}>
+        <Button backgroundColor={"#4299e1"} marginRight={"15px"} 
+         onClick = {()=>{
+          sendJsonMessage({
+              "type": "StartGame"})
+          }}>
             <Text fontSize="2xl" fontWeight="bold" color="white">
-              {/* <Link to="/about">About</Link> */}Start
+            Start
             </Text>
           </Button>)}
             
