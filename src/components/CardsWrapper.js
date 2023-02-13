@@ -1,4 +1,4 @@
-import Cards from "./Card";
+/* import Cards from "./Card";
 import { numbers, colors, symbols } from "./data";
 // import useRandomValueFromArray from "../hook/randomvalue";
 
@@ -34,3 +34,4 @@ const CardsWrapper = ({ cardsNumber }) => {
 };
 
 export default CardsWrapper;
+ */

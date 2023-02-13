@@ -1,5 +1,5 @@
-import { React } from "react";
-import Card from "react-playing-card";
+/* import { React } from "react";
+import Card from "react-playing-card"; */
 
 // const CenterCardElement = ({ number, symbol, name }) => {
 //   return (
@@ -52,8 +52,9 @@ import Card from "react-playing-card";
 //     </div>
 //   );
 // };
-const Cards = ({ symbol, rank }) => {
+/* const Cards = ({ symbol, rank }) => {
   return <Card rank={rank} suit={symbol} />;
 };
 
 export default Cards;
+ */

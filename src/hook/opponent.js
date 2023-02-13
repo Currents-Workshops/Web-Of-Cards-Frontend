@@ -1,4 +1,5 @@
 const generateOpponentArray = (game,userId) => {
+    if(game == null) return [];
     if(game.users == null) return [];
     let res = [];
     for(let i = 0 ; i< game.users.length;i++ )

@@ -1,8 +1,14 @@
 import React from "react";
 import { Box, Text, Stack, Flex, Button } from "@chakra-ui/react";
 
-export default function Leaderboard(props) {
+export default function Leaderboard({participants,isHost,sendJsonMessage}) {
   return (
+    <Flex
+            bg="gray.100"
+            minH="100vh"
+            align="center"
+            justify="center"
+        >
     <Box m="1rem" width="500px" height="500px">
       <Text fontSize="2xl" align="center">
         LEADERBOARD
@@ -17,19 +23,16 @@ export default function Leaderboard(props) {
           borderColor="gray.500"
           backgroundColor="gray.400"
         >
-          <Box w="30%" p="0.75rem">
+          <Box w="50%" p="0.75rem">
             <Text fontSize="lg">RANK</Text>
           </Box>
           <Box w="50%" p="0.75rem">
             <Text fontSize="lg">NAME</Text>
           </Box>
-          <Box w="20%" p="0.75rem">
-            <Text fontSize="lg">SCORE</Text>
-          </Box>
         </Flex>
 
-        {props.participants.map((participant, index) => (
-          <Flex
+        {participants.map((participant, index) => (
+          <Flex key={index}
             p="0.5rem"
             borderRadius="10px"
             shadow="md"
@@ -37,21 +40,19 @@ export default function Leaderboard(props) {
             align="center"
             backgroundColor="gray.200"
           >
-            <Box w="30%" p="0.5rem">
+            <Box w="50%" p="0.5rem">
               <Text fontSize="lg">{index + 1}.</Text>
             </Box>
             <Box w="50%" p="0.5rem">
               <Text fontSize="lg">{participant.name}</Text>
             </Box>
-            <Box w="20%" p="0.5rem">
-              <Text fontSize="lg">{participant.score}</Text>
-            </Box>
           </Flex>
         ))}
       </Stack>
       <Flex m="0.5rem" align="stretch">
-        {props.isHost && (
-          <Button backgroundColor="gray.500" w="50%" color="white">
+        {isHost && (
+          <Button backgroundColor="gray.500" w="50%" color="white" onClick ={()=>sendJsonMessage({
+            "type": "Restart"})}>
             Restart
           </Button>
         )}
@@ -60,5 +61,6 @@ export default function Leaderboard(props) {
         </Button>
       </Flex>
     </Box>
+    </Flex>
   );
 }

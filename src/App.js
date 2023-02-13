@@ -1,23 +1,24 @@
 import "./App.css";
-import CardsWrapper from "./components/CardsWrapper";
 import JoinCreate from "./components/JoinCreate";
-import Notification from "./components/Notification";
 import * as React from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import Leaderboard from "./components/LeaderBoard";
-import Card from "react-playing-card";
-
 import Opponents from "./components/Opponents";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import useWebSocket from "react-use-websocket";
 import generateOpponentArray from "./hook/opponent";
+import Cards from "./components/Cards/Cards";
+import turn from "./hook/turn";
+import playerCards from "./hook/playerCards";
+import deck from "./hook/deck";
+import isHost from "./hook/host";
+import isGameNotStart from "./hook/isGameNotStart";
 
 const WS_URL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   const [page, setPage] = useState("join");
-  const [isHost, setHost] = useState(false);
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [userId, setUserId] = useState("");
@@ -39,7 +40,6 @@ function App() {
 
         case "new_game":
           setPage("game");
-          setHost(true);
           setRoom(data.data.game.code);
           setGame(data.data.game);
           break;
@@ -51,23 +51,27 @@ function App() {
           break;
 
         case "start_game":
+          setPage("game");
           setGame(data.data.game);
           break;
 
+        case "game_data":
+          setGame(data.data.game);
+          break;
+
+        case "lose_message":
+          break;
+
+        case "leaderboard":
+          setPage("leaderboard");
+          setGame(data.data.game);
+          break;
+          
         default:
           break;
       }
     },
   });
-
-  // test data
-  const arrayOfParticipants = [
-    { name: "Participant a", score: 4 },
-    { name: "Participant b", score: 11 },
-    { name: "Participant c", score: 10 },
-    { name: "Participant d", score: 12 },
-    { name: "Participant e", score: 13 },
-  ];
 
   switch (page) {
     case "join":
@@ -83,11 +87,11 @@ function App() {
         </>
       );
     case "leaderboard":
-      return <Leaderboard participants={arrayOfParticipants} isHost={isHost} />;
+      return <Leaderboard participants={game.leaderboard} isHost={isHost(game,userId)}  sendJsonMessage={sendJsonMessage} />;
     case "game":
       return (
         <>
-          <Navbar isHost={isHost} room = {room} name = {name} sendJsonMessage={sendJsonMessage} />
+          <Navbar isHost={isHost(game,userId)} isNotGameStart={isGameNotStart(game)} room = {room} name = {name} sendJsonMessage={sendJsonMessage} />
           <Flex
             height="600px"
             width="100%"
@@ -99,12 +103,8 @@ function App() {
               <Opponents opponents={generateOpponentArray(game,userId)}></Opponents>
             </Box>
           </Flex>
-          <div>
-            <Card rank="2" suit="S" />
-          </div>
-          <div className="App">
-            <CardsWrapper cardsNumber="7" />
-          </div>
+          <Cards type={"deck"} turn={false} cards={deck(game)}/>
+          <Cards type={"player"} turn={turn(game,userId)} cards={playerCards(game,userId)} sendJsonMessage={sendJsonMessage}/>
         </>
       );
     default:
