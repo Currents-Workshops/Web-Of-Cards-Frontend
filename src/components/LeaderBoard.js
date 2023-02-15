@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Text, Stack, Flex, Button } from "@chakra-ui/react";
 
-export default function Leaderboard({participants,isHost,sendJsonMessage}) {
+export default function Leaderboard({participants,isHost,sendJsonMessage, setPage, setGame}) {
   return (
     <Flex
             bg="gray.100"
@@ -51,12 +51,23 @@ export default function Leaderboard({participants,isHost,sendJsonMessage}) {
       </Stack>
       <Flex m="0.5rem" align="stretch">
         {isHost && (
-          <Button backgroundColor="gray.500" w="50%" color="white" onClick ={()=>sendJsonMessage({
-            "type": "Restart"})}>
+          <Button backgroundColor="gray.500" w="50%" color="white" onClick ={()=>{
+            sendJsonMessage({
+              "type": "Restart"
+            })
+            setGame({})
+            setPage("game")
+          }}>
             Restart
           </Button>
         )}
-        <Button backgroundColor="gray.500" w="50%" color="white">
+        <Button backgroundColor="gray.500" w="50%" color="white"onClick={()=>{
+          sendJsonMessage({
+            "type": "leaveGame"
+          })
+          setPage("home")
+        }
+        }>
           Exit
         </Button>
       </Flex>

@@ -66,6 +66,9 @@ function App() {
           setPage("leaderboard");
           setGame(data.data.game);
           break;
+        case "left_game":
+          setPage("join")
+          break;
           
         default:
           break;
@@ -87,7 +90,7 @@ function App() {
         </>
       );
     case "leaderboard":
-      return <Leaderboard participants={game.leaderboard} isHost={isHost(game,userId)}  sendJsonMessage={sendJsonMessage} />;
+      return <Leaderboard participants={game.leaderboard} isHost={isHost(game,userId)}  sendJsonMessage={sendJsonMessage} setPage={setPage} setGame={setGame}/>;
     case "game":
       return (
         <>

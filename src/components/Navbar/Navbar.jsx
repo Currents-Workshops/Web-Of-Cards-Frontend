@@ -7,15 +7,7 @@ const Navbar = ({isHost,room,name,sendJsonMessage,isNotGameStart}) => {
   return (
     <nav className="navbar">
       <Flex
-      //  color={textColor}
-      //  flexDirection="row"
-      //  width="70px"
-      //  position="absolute"
-      //  border="1px solid black"
        padding="10px 30px 8px 30px"
-
-
-      
        justify="space-between"
        alignItems="center"
       >
@@ -50,7 +42,13 @@ const Navbar = ({isHost,room,name,sendJsonMessage,isNotGameStart}) => {
             </Text>
           </Button>)}
             
-          <Button backgroundColor={"red"}>
+          <Button backgroundColor={"red"} onClick={
+            ()=>{
+              sendJsonMessage({
+                "type": "leaveGame"
+              })
+            }
+          }>
             <Text fontSize="2xl" fontWeight="bold" color="white">
               {/* <Link to="/about">About</Link> */}Leave
             </Text>
