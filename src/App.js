@@ -68,6 +68,8 @@ function App() {
           break;
         case "left_game":
           setPage("join")
+          setGame({});
+          setRoom("");
           break;
           
         default:
