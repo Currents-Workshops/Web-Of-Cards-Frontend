@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Text,
@@ -11,8 +11,29 @@ import {
   GridItem,
 } from "@chakra-ui/react";
 import OpponentDisplay from "./Opponent";
+// import Opponents from './Opponents';
 
 export default function Opponents(props) {
+  // const opponentlist = props.Opponents;
+  // console.log(props.opponentsarray[0]);
+  const [usersList, setUsersList] = useState([]);
+
+  useEffect(() => {
+    if (props.opponentsarray.length > 0) {
+      setUsersList((prevList) => {
+        const filteredList = prevList.filter(
+          (user) => !props.opponentsarray.find(({ id }) => id === user.id)
+        );
+        return [...filteredList, ...props.opponentsarray];
+      });
+    }
+  }, [props.opponentsarray]);
+
+  console.log(typeof props.opponentsarray);
+  console.log(props.opponentsarray);
+  console.log(props);
+  console.log(props.opponentsarray.length > 0);
+  console.log(usersList);
   return (
     <Box height={window.innerHeight}>
       {/* <Box bg="gray.800" color="white" py={4} px={8}>
@@ -58,7 +79,14 @@ export default function Opponents(props) {
           <Heading as="h2" size="md">
             Left Container
           </Heading>
-          {/* Content for left container */}
+          {/* {props.opponentsarray[0] && ( */}
+          <OpponentDisplay
+            name={usersList[0] ? usersList[0].name : "no-user"}
+            id={usersList[0] ? usersList[0].id : 0}
+            isPlaying={usersList[0] ? usersList[0].isPlaying : false}
+            numberofcards={usersList[0] ? 8 : 0}
+          ></OpponentDisplay>
+          {/* )} */}
         </Box>
         <Box
           bg="white"
@@ -72,6 +100,14 @@ export default function Opponents(props) {
             Right Container
           </Heading>
           {/* Content for right container */}
+          {/* {props.opponentsarray[1] && ( */}
+          <OpponentDisplay
+            name={usersList[1] ? usersList[1].name : "no-user"}
+            id={usersList[1] ? usersList[1].id : 0}
+            isPlaying={usersList[1] ? usersList[1].isPlaying : false}
+            numberofcards={usersList[1] ? 5 : 0}
+          ></OpponentDisplay>
+          {/* )} */}
         </Box>
       </Flex>
       <Flex
@@ -94,6 +130,14 @@ export default function Opponents(props) {
             Top Container
           </Heading>
           {/* Content for top container */}
+          {/* {props.opponentsarray[2] && ( */}
+          <OpponentDisplay
+            name={usersList[2] ? usersList[2].name : "no-user"}
+            id={usersList[2] ? usersList[2].id : 0}
+            isPlaying={usersList[2] ? usersList[2].isPlaying : false}
+            numberofcards={usersList[2] ? 2 : 0}
+          ></OpponentDisplay>
+          {/* )} */}
         </Box>
       </Flex>
       <Flex
@@ -116,6 +160,14 @@ export default function Opponents(props) {
             Bottom Container
           </Heading>
           {/* Content for bottom container */}
+          {/* {props.opponentsarray[3] && ( */}
+          <OpponentDisplay
+            name={usersList[3] ? usersList[3].name : "no-user"}
+            id={usersList[3] ? usersList[3].id : 0}
+            isPlaying={usersList[3] ? usersList[3].isPlaying : false}
+            numberofcards={usersList[3] ? 7 : 0}
+          ></OpponentDisplay>
+          {/* )} */}
         </Box>
       </Flex>
     </Box>
@@ -123,9 +175,9 @@ export default function Opponents(props) {
   //   <Flex alignItems="center" justifyContent="center" height="100%" width="100%">
   //   <Box alignSelf="center">
   //   <HStack spacing="50px">
-  //       {props.opponents.map((Opponent, index) => (
-  //       <OpponentDisplay name={Opponent.name} id={Opponent.id} isPlaying={Opponent.isPlaying} key={index}></OpponentDisplay>
-  //     ))}
+  //   {props.opponents.map((Opponent, index) => (
+  //   <OpponentDisplay name={Opponent.name} id={Opponent.id} isPlaying={Opponent.isPlaying} key={index}></OpponentDisplay>
+  // ))}
   //   </HStack>
   //   </Box>
   //   </Flex>
