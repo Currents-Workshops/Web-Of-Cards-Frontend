@@ -125,16 +125,13 @@ function App() {
             <Box alignSelf="center">
               <Opponents
                 opponentsarray={generateOpponentArray(game, userId)}
+                cards={deck(game)}
+                turn={turn(game, userId)}
+                currentusercards={playerCards(game, userId)}
+                sendJsonMessage={sendJsonMessage}
               ></Opponents>
             </Box>
           </Flex>
-          <Cards type={"deck"} turn={false} cards={deck(game)} />
-          <Cards
-            type={"player"}
-            turn={turn(game, userId)}
-            cards={playerCards(game, userId)}
-            sendJsonMessage={sendJsonMessage}
-          />
         </>
       );
     default:
