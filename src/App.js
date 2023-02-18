@@ -22,7 +22,12 @@ function App() {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [userId, setUserId] = useState("");
-  const [game,setGame] = useState({});
+  const [game, setGame] = useState({});
+
+  const array = [
+    { name: "name", id: 1, isPlaying: true },
+    { name: "nam1e", id: 21, isPlaying: true },
+  ];
 
   const { sendJsonMessage } = useWebSocket(WS_URL, {
     onOpen: () => {
@@ -30,12 +35,11 @@ function App() {
     },
     onMessage: (res) => {
       // handle messages from server
-      let data = JSON.parse(res.data)
+      let data = JSON.parse(res.data);
       console.log(data);
       switch (data.type) {
-
         case "feedback":
-          if(data.data.user_id!=null) setUserId(data.data.user_id)
+          if (data.data.user_id != null) setUserId(data.data.user_id);
           break;
 
         case "new_game":
@@ -43,8 +47,8 @@ function App() {
           setRoom(data.data.game.code);
           setGame(data.data.game);
           break;
-        
-        case  "joined_game":
+
+        case "joined_game":
           setPage("game");
           setRoom(data.data.game.code);
           setGame(data.data.game);
@@ -67,11 +71,11 @@ function App() {
           setGame(data.data.game);
           break;
         case "left_game":
-          setPage("join")
+          setPage("join");
           setGame({});
           setRoom("");
           break;
-          
+
         default:
           break;
       }
@@ -92,11 +96,25 @@ function App() {
         </>
       );
     case "leaderboard":
-      return <Leaderboard participants={game.leaderboard} isHost={isHost(game,userId)}  sendJsonMessage={sendJsonMessage} setPage={setPage} setGame={setGame}/>;
+      return (
+        <Leaderboard
+          participants={game.leaderboard}
+          isHost={isHost(game, userId)}
+          sendJsonMessage={sendJsonMessage}
+          setPage={setPage}
+          setGame={setGame}
+        />
+      );
     case "game":
       return (
         <>
-          <Navbar isHost={isHost(game,userId)} isNotGameStart={isGameNotStart(game)} room = {room} name = {name} sendJsonMessage={sendJsonMessage} />
+          <Navbar
+            isHost={isHost(game, userId)}
+            isNotGameStart={isGameNotStart(game)}
+            room={room}
+            name={name}
+            sendJsonMessage={sendJsonMessage}
+          />
           <Flex
             height="600px"
             width="100%"
@@ -105,11 +123,15 @@ function App() {
             alignItems="center"
           >
             <Box alignSelf="center">
-              <Opponents opponents={generateOpponentArray(game,userId)}></Opponents>
+              <Opponents
+                opponentsarray={generateOpponentArray(game, userId)}
+                cards={deck(game)}
+                turn={turn(game, userId)}
+                currentusercards={playerCards(game, userId)}
+                sendJsonMessage={sendJsonMessage}
+              ></Opponents>
             </Box>
           </Flex>
-          <Cards type={"deck"} turn={false} cards={deck(game)}/>
-          <Cards type={"player"} turn={turn(game,userId)} cards={playerCards(game,userId)} sendJsonMessage={sendJsonMessage}/>
         </>
       );
     default:
