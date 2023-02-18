@@ -49,9 +49,9 @@ export default function Leaderboard({participants,isHost,sendJsonMessage, setPag
           </Flex>
         ))}
       </Stack>
-      <Flex m="0.5rem" align="stretch">
+      <Flex  spacing={2} >
         {isHost && (
-          <Button backgroundColor="gray.500" w="50%" color="white" onClick ={()=>{
+          <Button backgroundColor="gray.500" w="50%" color="white" marginRight={2} marginTop={2} onClick ={()=>{
             sendJsonMessage({
               "type": "Restart"
             })
@@ -61,7 +61,7 @@ export default function Leaderboard({participants,isHost,sendJsonMessage, setPag
             Restart
           </Button>
         )}
-        <Button backgroundColor="gray.500" w="50%" color="white"onClick={()=>{
+        <Button backgroundColor="gray.500" w="50%" color="white" marginLeft={2} marginTop={2} onClick={()=>{
           sendJsonMessage({
             "type": "leaveGame"
           })

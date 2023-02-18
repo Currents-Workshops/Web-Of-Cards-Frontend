@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Text, Stack, Flex, Button, Spacer } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import Img from "../images/CardBack.jpg";
+import Cards from "./Cards/Cards";
 
 export default function OpponentDisplay(props) {
   console.log(props.isLost);
@@ -25,9 +26,10 @@ export default function OpponentDisplay(props) {
               </Text>
             )}
             {!props.isPlaying && <Text>{props.name}</Text>}
+            
           </Flex>
 
-          {props.isPlaying && (
+          {/* {props.isPlaying && (
             <Text color="red" fontSize="22px">
               {props.id}
             </Text>
@@ -53,7 +55,10 @@ export default function OpponentDisplay(props) {
               {props.isLost}
             </Text>
           )}
-          {!props.isPlaying && <Text>{props.isLost ? "true" : "false"}</Text>}
+          {!props.isPlaying && <Text>{props.isLost ? "true" : "false"}</Text>} */}
+          
+          <Cards numberOfCards={props.numberofcards} type="opponent" ></Cards>
+          {/* call for testing */}
         </Stack>
       </Box>
     </div>
