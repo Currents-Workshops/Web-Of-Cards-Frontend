@@ -108,21 +108,23 @@ function App() {
     case "game":
       return (
         <>
-          <Navbar
-            isHost={isHost(game, userId)}
-            isNotGameStart={isGameNotStart(game)}
-            room={room}
-            name={name}
-            sendJsonMessage={sendJsonMessage}
-          />
-          <Flex
-            height="600px"
-            width="100%"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Box alignSelf="center">
+          <Box flex="1" backgroundColor="#C0EAFC">
+            <Navbar
+              isHost={isHost(game, userId)}
+              isNotGameStart={isGameNotStart(game)}
+              room={room}
+              name={name}
+              sendJsonMessage={sendJsonMessage}
+            />
+            {/* <Flex
+              height="600px"
+              width="100%"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              backgroundColor="#C0EAFC"
+            > */}
+            <Box alignSelf="center" backgroundColor="#C0EAFC">
               <Opponents
                 opponentsarray={generateOpponentArray(game, userId)}
                 cards={deck(game)}
@@ -131,7 +133,8 @@ function App() {
                 sendJsonMessage={sendJsonMessage}
               ></Opponents>
             </Box>
-          </Flex>
+            {/* </Flex> */}
+          </Box>
         </>
       );
     default:

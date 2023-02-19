@@ -1,66 +1,30 @@
 import React from "react";
-import { Box, Text, Stack, Flex, Button, Spacer } from "@chakra-ui/react";
-import { Image } from "@chakra-ui/react";
-import Img from "../images/CardBack.jpg";
+import { Text, Stack, Flex } from "@chakra-ui/react";
 import Cards from "./Cards/Cards";
 
 export default function OpponentDisplay(props) {
-  console.log(props.isLost);
   return (
-    <div style={{ display: "flex", alignItems: "stretch" }}>
-      <Box width="180px">
-        <Stack>
-          <Flex
-            p="1rem"
-            shadow="md"
-            borderWidth="1px"
-            align="stretch"
-            borderColor="gray.500"
-            backgroundColor="gray.400"
-            borderRadius="5px"
-            justifyContent="center"
-          >
-            {props.isPlaying && (
-              <Text color="red" fontSize="22px">
-                {props.name}
-              </Text>
-            )}
-            {!props.isPlaying && <Text>{props.name}</Text>}
-            
-          </Flex>
-
-          {/* {props.isPlaying && (
-            <Text color="red" fontSize="22px">
-              {props.id}
-            </Text>
-          )}
-          {!props.isPlaying && <Text>{props.id}</Text>}
-
-          {props.isPlaying && (
-            <Text color="red" fontSize="22px">
-              {props.isPlaying}
-            </Text>
-          )}
-          {!props.isPlaying && <Text>{props.isPlaying}</Text>}
-
-          {props.isPlaying && (
-            <Text color="red" fontSize="22px">
-              {props.numberofcards}
-            </Text>
-          )}
-          {!props.isPlaying && <Text>{props.numberofcards}</Text>}
-
-          {props.isPlaying && (
-            <Text color="red" fontSize="22px">
-              {props.isLost}
-            </Text>
-          )}
-          {!props.isPlaying && <Text>{props.isLost ? "true" : "false"}</Text>} */}
-          
-          <Cards numberOfCards={props.numberofcards} type="opponent" ></Cards>
-          {/* call for testing */}
-        </Stack>
-      </Box>
-    </div>
+    <Stack>
+      <Flex
+        paddingBottom="0.9rem"
+        paddingTop="0.9rem"
+        shadow="lg"
+        align="center"
+        backgroundColor="#D3F4FA"
+        borderRadius="10px"
+        justifyContent="center"
+        marginBottom="1"
+      >
+        {props.isPlaying && (
+          <Text color="#293D41" fontSize="22px" fontWeight="bold">
+            {props.name}
+          </Text>
+        )}
+        {!props.isPlaying && <Text>{props.name}</Text>}
+      </Flex>
+      <Flex align="center" justifyContent="flex-start" paddingLeft="5">
+        <Cards numberOfCards={props.numberofcards} type="opponent"></Cards>
+      </Flex>
+    </Stack>
   );
 }
