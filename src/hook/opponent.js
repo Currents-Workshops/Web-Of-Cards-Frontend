@@ -4,8 +4,6 @@ const generateOpponentArray = (game, userId) => {
   let res = [];
   for (let i = 0; i < game.users.length; i++) {
     let user = game.users[i];
-    console.log("hello");
-    console.log(user);
     if (user.id !== userId)
       res.push({
         name: user.name,

@@ -1,21 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Text,
-  Stack,
-  Flex,
-  Button,
-  HStack,
-  Heading,
-  Grid,
-  GridItem,
-} from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import OpponentDisplay from "./Opponent";
 import Cards from "../components/Cards/Cards";
 
 export default function Opponents(props) {
-  // const opponentlist = props.Opponents;
-  // console.log(props.opponentsarray[0]);
   const [usersList, setUsersList] = useState([]);
 
   useEffect(() => {
@@ -29,159 +17,130 @@ export default function Opponents(props) {
     }
   }, [props.opponentsarray]);
 
-  // console.log(typeof props.opponentsarray);
-  // console.log(props.opponentsarray);
-  // console.log(props);
-  // console.log(props.opponentsarray.length > 0);
-  console.log(usersList);
+  // const latestCardsLeft = usersList[1]?.cards.slice(-10);
+  // const latestCardsTop = usersList[0]?.cards.slice(-10);
+  // const latestCardsRight = usersList[2]?.cards.slice(-10);
+  // // const latestCardscenter = usersList[1]?.cards.slice(-10);
   return (
-    <Box height={window.innerHeight}>
-      {/* <Box bg="gray.800" color="white" py={4} px={8}>
-        <Heading as="h1" size="xl">
-          Header
-        </Heading>
-      </Box> */}
+    <Box height={window.outerHeight}>
       <Flex
-        height="calc(130% - 80px)"
+        height="calc(100% - 240px)"
         justifyContent="center"
         alignItems="center"
       >
         <Box
           bg="white"
           borderRadius="lg"
-          boxShadow="lg"
           p={4}
-          width="90%"
-          height="25%"
-          alignItems={"center"}
+          width="100%"
+          height="15%"
+          alignItems="center"
+          backgroundColor="#C0EAFC"
+          flex="1"
         >
-          <Heading as="h2" size="md">
-            Center Container
-          </Heading>
           {/* Content for center container */}
-          <Box>
-            <Cards type={"deck"} turn={false} cards={props.cards} />
-          </Box>
+          <Cards type={"deck"} turn={false} cards={props.cards} />
         </Box>
       </Flex>
       <Flex
         justifyContent="space-between"
         position="absolute"
-        top="calc(35% - 100px)"
-        bottom="calc(52% - 100px)"
-        left="100px"
-        right="100px"
+        top="calc(45% - 100px)"
+        bottom="calc(55% - 100px)"
+        left="10px"
+        right="10px"
       >
-        <Box
-          bg="white"
-          borderRadius="lg"
-          boxShadow="lg"
-          p={4}
-          height="120%"
-          width="18%"
-        >
-          <Heading as="h2" size="md">
-            Left Container
-          </Heading>
-          {/* Content for left container */}
-          <OpponentDisplay
-            name={usersList[0] ? usersList[0].name : "no-user"}
-            id={usersList[0] ? usersList[0].id : 0}
-            isPlaying={usersList[0] ? usersList[0].isPlaying : false}
-            numberofcards={usersList[0] ? usersList[0].number_of_cards : 0}
-            isLost={usersList[0] ? usersList[0].isLost : true}
-          ></OpponentDisplay>
-        </Box>
-        <Box
-          bg="white"
-          borderRadius="lg"
-          boxShadow="lg"
-          p={4}
-          height="120%"
-          width="18%"
-        >
-          <Heading as="h2" size="md">
-            Right Container
-          </Heading>
-          {/* Content for right container */}
-          <OpponentDisplay
-            name={usersList[1] ? usersList[1].name : "no-user"}
-            id={usersList[1] ? usersList[1].id : 0}
-            isPlaying={usersList[1] ? usersList[1].isPlaying : false}
-            numberofcards={usersList[1] ? usersList[1].number_of_cards : 0}
-            isLost={usersList[1] ? usersList[1].isLost : true}
-          ></OpponentDisplay>
-        </Box>
+        {usersList[1] && usersList[1].name && (
+          <Box
+            backgroundColor="#C0EAFC"
+            borderRadius="lg"
+            p={4}
+            height="100%"
+            width="18%"
+          >
+            {/* Content for left container */}
+            <OpponentDisplay
+              name={usersList[1].name}
+              id={usersList[1].id}
+              isPlaying={usersList[1].isPlaying}
+              numberofcards={usersList[1].number_of_cards}
+              isLost={usersList[1].isLost}
+            ></OpponentDisplay>
+          </Box>
+        )}
+        {usersList[2] && usersList[2].name && (
+          <Box
+            backgroundColor="#C0EAFC"
+            borderRadius="lg"
+            p={4}
+            height="100%"
+            width="18%"
+          >
+            {/* Content for right container */}
+            <OpponentDisplay
+              name={usersList[2].name}
+              id={usersList[2].id}
+              isPlaying={usersList[2].isPlaying}
+              numberofcards={usersList[2].number_of_cards}
+              isLost={usersList[2].isLost}
+            ></OpponentDisplay>
+          </Box>
+        )}
       </Flex>
       <Flex
         justifyContent="space-between"
         position="absolute"
         top="100px"
         bottom="100px"
-        left="calc(40% - 100px)"
-        right="calc(40% - 100px)"
+        left="calc(40% )"
+        right="calc(40%)"
       >
-        <Box
-          bg="white"
-          borderRadius="lg"
-          boxShadow="lg"
-          p={4}
-          width="100%"
-          height="18%"
-        >
-          <Heading as="h2" size="md">
-            Top Container
-          </Heading>
-          {/* Content for top container */}
-          <OpponentDisplay
-            name={usersList[2] ? usersList[2].name : "no-user"}
-            id={usersList[2] ? usersList[2].id : 0}
-            isPlaying={usersList[2] ? usersList[2].isPlaying : false}
-            numberofcards={usersList[2] ? usersList[2].number_of_cards : 0}
-            isLost={usersList[2] ? usersList[2].isLost : true}
-          ></OpponentDisplay>
-        </Box>
-      </Flex>
-      <Flex
-        justifyContent="space-between"
-        position="absolute"
-        top="calc(80%)"
-        bottom="10px"
-        left="calc(40% - 100px)"
-        right="calc(40% - 100px)"
-      >
-        <Box
-          bg="white"
-          borderRadius="lg"
-          boxShadow="lg"
-          p={4}
-          width="100%"
-          height="60%"
-        >
-          <Heading as="h2" size="md">
-            Bottom Container
-          </Heading>
-          {/* Content for bottom container*/}
-          <Box>
-            <Cards
-              type={"player"}
-              turn={props.turn}
-              cards={props.currentusercards}
-              sendJsonMessage={props.sendJsonMessage}
-            />
+        {usersList[0] && usersList[0].name && (
+          <Box
+            backgroundColor="#C0EAFC"
+            borderRadius="lg"
+            p={4}
+            width="80%"
+            height="18%"
+          >
+            {/* Content for top container */}
+
+            <OpponentDisplay
+              name={usersList[0].name}
+              id={usersList[0].id}
+              isPlaying={usersList[0].isPlaying}
+              numberofcards={usersList[0].number_of_cards}
+              isLost={usersList[0].isLost}
+            ></OpponentDisplay>
           </Box>
-        </Box>
+        )}
+      </Flex>
+
+      {/* Content for bottom container*/}
+      <Flex
+        paddingBottom="0.9rem"
+        paddingTop="0.9rem"
+        shadow="lg"
+        align="center"
+        backgroundColor="#D3F4FA"
+        borderRadius="10px"
+        justifyContent="center"
+        marginBottom="1"
+        marginLeft="40%"
+        marginRight="40%"
+      >
+        <Text fontSize="l" fontWeight="bold">
+          YOUR DECK
+        </Text>
+      </Flex>
+      <Flex align="center" justifyContent="center" marginRight="200">
+        <Cards
+          type={"player"}
+          turn={props.turn}
+          cards={props.currentusercards}
+          sendJsonMessage={props.sendJsonMessage}
+        />
       </Flex>
     </Box>
   );
-  //   <Flex alignItems="center" justifyContent="center" height="100%" width="100%">
-  //   <Box alignSelf="center">
-  //   <HStack spacing="50px">
-  //   {props.opponents.map((Opponent, index) => (
-  //   <OpponentDisplay name={Opponent.name} id={Opponent.id} isPlaying={Opponent.isPlaying} key={index}></OpponentDisplay>
-  // ))}
-  //   </HStack>
-  //   </Box>
-  //   </Flex>
-  //  );
 }
