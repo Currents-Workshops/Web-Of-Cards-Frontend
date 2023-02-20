@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Flex, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import OpponentDisplay from "./Opponent";
 import Cards from "../components/Cards/Cards";
 
@@ -16,6 +16,11 @@ export default function Opponents(props) {
       });
     }
   }, [props.opponentsarray]);
+
+  // const latestCardsLeft = usersList[1]?.cards.slice(-10);
+  // const latestCardsTop = usersList[0]?.cards.slice(-10);
+  // const latestCardsRight = usersList[2]?.cards.slice(-10);
+  // // const latestCardscenter = usersList[1]?.cards.slice(-10);
   return (
     <Box height={window.outerHeight}>
       <Flex
@@ -45,38 +50,42 @@ export default function Opponents(props) {
         left="10px"
         right="10px"
       >
-        <Box
-          backgroundColor="#C0EAFC"
-          borderRadius="lg"
-          p={4}
-          height="100%"
-          width="18%"
-        >
-          {/* Content for left container */}
-          <OpponentDisplay
-            name={usersList[0] ? usersList[0].name : "no-user"}
-            id={usersList[0] ? usersList[0].id : 0}
-            isPlaying={usersList[0] ? usersList[0].isPlaying : false}
-            numberofcards={usersList[0] ? usersList[0].number_of_cards : 0}
-            isLost={usersList[0] ? usersList[0].isLost : true}
-          ></OpponentDisplay>
-        </Box>
-        <Box
-          backgroundColor="#C0EAFC"
-          borderRadius="lg"
-          p={4}
-          height="100%"
-          width="18%"
-        >
-          {/* Content for right container */}
-          <OpponentDisplay
-            name={usersList[1] ? usersList[1].name : "no-user"}
-            id={usersList[1] ? usersList[1].id : 0}
-            isPlaying={usersList[1] ? usersList[1].isPlaying : false}
-            numberofcards={usersList[1] ? usersList[1].number_of_cards : 0}
-            isLost={usersList[1] ? usersList[1].isLost : true}
-          ></OpponentDisplay>
-        </Box>
+        {usersList[1] && usersList[1].name && (
+          <Box
+            backgroundColor="#C0EAFC"
+            borderRadius="lg"
+            p={4}
+            height="100%"
+            width="18%"
+          >
+            {/* Content for left container */}
+            <OpponentDisplay
+              name={usersList[1].name}
+              id={usersList[1].id}
+              isPlaying={usersList[1].isPlaying}
+              numberofcards={usersList[1].number_of_cards}
+              isLost={usersList[1].isLost}
+            ></OpponentDisplay>
+          </Box>
+        )}
+        {usersList[2] && usersList[2].name && (
+          <Box
+            backgroundColor="#C0EAFC"
+            borderRadius="lg"
+            p={4}
+            height="100%"
+            width="18%"
+          >
+            {/* Content for right container */}
+            <OpponentDisplay
+              name={usersList[2].name}
+              id={usersList[2].id}
+              isPlaying={usersList[2].isPlaying}
+              numberofcards={usersList[2].number_of_cards}
+              isLost={usersList[2].isLost}
+            ></OpponentDisplay>
+          </Box>
+        )}
       </Flex>
       <Flex
         justifyContent="space-between"
@@ -86,22 +95,25 @@ export default function Opponents(props) {
         left="calc(40% )"
         right="calc(40%)"
       >
-        <Box
-          backgroundColor="#C0EAFC"
-          borderRadius="lg"
-          p={4}
-          width="80%"
-          height="18%"
-        >
-          {/* Content for top container */}
-          <OpponentDisplay
-            name={usersList[2] ? usersList[2].name : "no-user"}
-            id={usersList[2] ? usersList[2].id : 0}
-            isPlaying={usersList[2] ? usersList[2].isPlaying : false}
-            numberofcards={usersList[2] ? usersList[2].number_of_cards : 0}
-            isLost={usersList[2] ? usersList[2].isLost : true}
-          ></OpponentDisplay>
-        </Box>
+        {usersList[0] && usersList[0].name && (
+          <Box
+            backgroundColor="#C0EAFC"
+            borderRadius="lg"
+            p={4}
+            width="80%"
+            height="18%"
+          >
+            {/* Content for top container */}
+
+            <OpponentDisplay
+              name={usersList[0].name}
+              id={usersList[0].id}
+              isPlaying={usersList[0].isPlaying}
+              numberofcards={usersList[0].number_of_cards}
+              isLost={usersList[0].isLost}
+            ></OpponentDisplay>
+          </Box>
+        )}
       </Flex>
 
       {/* Content for bottom container*/}

@@ -116,14 +116,6 @@ function App() {
               name={name}
               sendJsonMessage={sendJsonMessage}
             />
-            {/* <Flex
-              height="600px"
-              width="100%"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              backgroundColor="#C0EAFC"
-            > */}
             <Box alignSelf="center" backgroundColor="#C0EAFC">
               <Opponents
                 opponentsarray={generateOpponentArray(game, userId)}
@@ -133,7 +125,6 @@ function App() {
                 sendJsonMessage={sendJsonMessage}
               ></Opponents>
             </Box>
-            {/* </Flex> */}
           </Box>
         </>
       );
