@@ -11,7 +11,7 @@ export default function Cards({
 }) {
   switch (type) {
     case "opponent":
-      const arrayToStoreNumberOfCards = new Array(numberOfCards).fill(null);
+      const arrayToStoreNumberOfCards = new Array(numberOfCards <= 10 ? numberOfCards : 10 ).fill(null);
     //   making a null array to map
       return (
         <Flex minH="20vh" align="center" justify="center">
@@ -31,35 +31,35 @@ export default function Cards({
       );
 
     case "deck":
+      let card = null;
+      if(cards.length!==0) card = cards[cards.length-1]
+      if(card == null)
+      {
+        return (
+          <Flex minH="20vh" align="center" justify="center"></Flex>
+        )
+      }
       return (
         <>
           <Flex minH="20vh" align="center" justify="center">
             <div className="playingCards">
-              <ul className="hand">
-                {cards.map((card, index) => {
-                  return (
-                    <li key={card.id}>
-                      <div
-                        className={"card rank-" + card.number + " " + card.type}
-                      >
-                        <span className="rank">{card.number}</span>
-                        {card.type === "spades" && (
-                          <span className="suit">&spades;</span>
-                        )}
-                        {card.type === "clubs" && (
-                          <span className="suit">&clubs;</span>
-                        )}
-                        {card.type === "diams" && (
-                          <span className="suit">&diams;</span>
-                        )}
-                        {card.type === "hearts" && (
-                          <span className="suit">&hearts;</span>
-                        )}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+                <div
+                  className={"card rank-" + card.number + " " + card.type}
+                >
+                  <span className="rank">{card.number}</span>
+                  {card.type === "spades" && (
+                    <span className="suit">&spades;</span>
+                  )}
+                  {card.type === "clubs" && (
+                    <span className="suit">&clubs;</span>
+                  )}
+                  {card.type === "diams" && (
+                    <span className="suit">&diams;</span>
+                  )}
+                  {card.type === "hearts" && (
+                    <span className="suit">&hearts;</span>
+                  )}
+                </div>
             </div>
           </Flex>
         </>
