@@ -1,4 +1,4 @@
-# Currents Web Game
+# Web Of Cards - Frontend
 
 Tech Stack: React
 

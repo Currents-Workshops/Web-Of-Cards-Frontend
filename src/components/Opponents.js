@@ -126,8 +126,8 @@ export default function Opponents(props) {
         borderRadius="10px"
         justifyContent="center"
         marginBottom="1"
-        marginLeft="40%"
-        marginRight="40%"
+        marginLeft="30%"
+        marginRight="30%"
       >
         <Text fontSize="l" fontWeight="bold">
           YOUR DECK

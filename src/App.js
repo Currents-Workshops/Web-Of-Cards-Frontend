@@ -1,19 +1,19 @@
 import "./App.css";
 import JoinCreate from "./components/JoinCreate";
 import * as React from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import Leaderboard from "./components/LeaderBoard";
 import Opponents from "./components/Opponents";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import useWebSocket from "react-use-websocket";
 import generateOpponentArray from "./hook/opponent";
-import Cards from "./components/Cards/Cards";
 import turn from "./hook/turn";
 import playerCards from "./hook/playerCards";
 import deck from "./hook/deck";
 import isHost from "./hook/host";
 import isGameNotStart from "./hook/isGameNotStart";
+//import Notification from "./components/Notification";
 
 const WS_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -24,11 +24,6 @@ function App() {
   const [userId, setUserId] = useState("");
   const [game, setGame] = useState({});
 
-  const array = [
-    { name: "name", id: 1, isPlaying: true },
-    { name: "nam1e", id: 21, isPlaying: true },
-  ];
-
   const { sendJsonMessage } = useWebSocket(WS_URL, {
     onOpen: () => {
       console.log("WebSocket connection established.");
@@ -38,9 +33,6 @@ function App() {
       let data = JSON.parse(res.data);
       console.log(data);
       switch (data.type) {
-        case "feedback":
-          if (data.data.user_id != null) setUserId(data.data.user_id);
-          break;
 
         case "new_game":
           setPage("game");
@@ -64,19 +56,24 @@ function App() {
           break;
 
         case "lose_message":
+          setGame(data.data.game);
           break;
 
         case "leaderboard":
           setPage("leaderboard");
           setGame(data.data.game);
           break;
+
         case "left_game":
           setPage("join");
           setGame({});
           setRoom("");
+          setName("");
           break;
 
         default:
+          if (data.data != null && data.data.user_id != null) setUserId(data.data.user_id);
+          if (data.data != null && data.data.message != null) //Notification({"title":data.data.message});
           break;
       }
     },
