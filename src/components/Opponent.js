@@ -16,11 +16,20 @@ export default function OpponentDisplay(props) {
         marginBottom="1"
       >
         {props.isPlaying && (
-          <Text color="#293D41" fontSize="22px" fontWeight="bold">
+          <Text color="green" fontSize="22px" fontWeight="bold">
             {props.name}
           </Text>
         )}
-        {!props.isPlaying && <Text>{props.name}</Text>}
+        {props.isLost && (
+          <Text color="red" fontSize="22px" fontWeight="bold">
+            {props.name}
+          </Text>
+        )}
+        {!props.isPlaying && (
+          <Text color="white" fontSize="22px" fontWeight="bold">
+            {props.name}
+          </Text>
+        )}
       </Flex>
       <Flex align="center" justifyContent="flex-start" paddingLeft="5">
         <Cards numberOfCards={props.numberofcards} type="opponent"></Cards>

@@ -10,7 +10,7 @@ const Navbar = ({ isHost, room, name, sendJsonMessage, isNotGameStart }) => {
         justify="space-between"
         alignItems="center"
       >
-        <Box>
+        <Box width={250}>
           <Text fontSize="2xl" fontWeight="bold" color="black">
             {name}
           </Text>
@@ -25,23 +25,21 @@ const Navbar = ({ isHost, room, name, sendJsonMessage, isNotGameStart }) => {
             </Text>
           </Flex>
         </Box>
-        <Box>
-          {isHost && isNotGameStart && (
-            <Button
-              backgroundColor={"#4299e1"}
-              marginRight={"15px"}
-              onClick={() => {
-                sendJsonMessage({
-                  type: "StartGame",
-                });
-              }}
-            >
-              <Text fontSize="2xl" fontWeight="bold" color="white">
-                Start
-              </Text>
-            </Button>
-          )}
-
+        <Box width={250}>
+          <Button
+            backgroundColor={"#4299e1"}
+            marginRight={"15px"}
+            onClick={() => {
+              sendJsonMessage({
+                type: "StartGame",
+              });
+            }}
+            visibility={isHost && isNotGameStart ? "visible" : "hidden"}
+          >
+            <Text fontSize="2xl" fontWeight="bold" color="white">
+              Start
+            </Text>
+          </Button>
           <Button
             backgroundColor={"red"}
             onClick={() => {
