@@ -7,20 +7,18 @@ export default function Opponents(props) {
   const [usersList, setUsersList] = useState([]);
 
   useEffect(() => {
+    console.log(props.opponentsarray)
     if (props.opponentsarray.length > 0) {
-      setUsersList((prevList) => {
-        const filteredList = prevList.filter(
-          (user) => !props.opponentsarray.find(({ id }) => id === user.id)
-        );
-        return [...filteredList, ...props.opponentsarray];
-      });
+      // setUsersList((prevList) => {
+      //   const filteredList = prevList.filter(
+      //     (user) => !props.opponentsarray.find(({ id }) => id === user.id)
+      //   );
+      //   return [...filteredList, ...props.opponentsarray];
+      // });
+      setUsersList(props.opponentsarray)
     }
   }, [props.opponentsarray]);
 
-  // const latestCardsLeft = usersList[1]?.cards.slice(-10);
-  // const latestCardsTop = usersList[0]?.cards.slice(-10);
-  // const latestCardsRight = usersList[2]?.cards.slice(-10);
-  // // const latestCardscenter = usersList[1]?.cards.slice(-10);
   return (
     <Box height={window.outerHeight}>
       <Flex
@@ -35,7 +33,7 @@ export default function Opponents(props) {
           width="100%"
           height="15%"
           alignItems="center"
-          backgroundColor="#C0EAFC"
+          backgroundColor="rgba(0, 0, 0, 0)"
           flex="1"
         >
           {/* Content for center container */}
@@ -52,7 +50,7 @@ export default function Opponents(props) {
       >
         {usersList[1] && usersList[1].name && (
           <Box
-            backgroundColor="#C0EAFC"
+            backgroundColor="rgba(0, 0, 0, 0)"
             borderRadius="lg"
             p={4}
             height="100%"
@@ -65,12 +63,13 @@ export default function Opponents(props) {
               isPlaying={usersList[1].isPlaying}
               numberofcards={usersList[1].number_of_cards}
               isLost={usersList[1].isLost}
+              left={true}
             ></OpponentDisplay>
           </Box>
         )}
         {usersList[2] && usersList[2].name && (
           <Box
-            backgroundColor="#C0EAFC"
+            backgroundColor="rgba(0, 0, 0, 0) "
             borderRadius="lg"
             p={4}
             height="100%"
@@ -83,6 +82,7 @@ export default function Opponents(props) {
               isPlaying={usersList[2].isPlaying}
               numberofcards={usersList[2].number_of_cards}
               isLost={usersList[2].isLost}
+              left={true}
             ></OpponentDisplay>
           </Box>
         )}
@@ -97,7 +97,7 @@ export default function Opponents(props) {
       >
         {usersList[0] && usersList[0].name && (
           <Box
-            backgroundColor="#C0EAFC"
+            backgroundColor="rgba(0, 0, 0, 0)"
             borderRadius="lg"
             p={4}
             width="80%"
@@ -122,7 +122,8 @@ export default function Opponents(props) {
         paddingTop="0.9rem"
         shadow="lg"
         align="center"
-        backgroundColor="#D3F4FA"
+        backgroundColor="#002029"
+        border={`1px solid white`}
         borderRadius="10px"
         justifyContent="center"
         marginBottom="1"
@@ -130,7 +131,7 @@ export default function Opponents(props) {
         marginRight="30%"
       >
         <Text fontSize="l" fontWeight="bold">
-          YOUR DECK
+          {!props.turn ? "YOUR DECK" : "YOUR TURN"}
         </Text>
       </Flex>
       <Flex align="center" justifyContent="center" marginRight="200">

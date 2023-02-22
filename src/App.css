@@ -12,9 +12,13 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+@font-face {
+  font-family: DuneRise;
+  src: url(../public/fonts/dune-rise.otf);
+}
 
 .App-header {
-  background-color: #282c34;
+  background-color: #002029;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

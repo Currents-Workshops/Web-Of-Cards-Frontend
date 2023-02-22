@@ -13,7 +13,7 @@ const generateOpponentArray = (game, userId) => {
         number_of_cards: user.cards.length,
       });
   }
-  return res;
+  return [...res];
 };
 
 export default generateOpponentArray;

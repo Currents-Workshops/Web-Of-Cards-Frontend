@@ -1,7 +1,7 @@
 import "./App.css";
 import JoinCreate from "./components/JoinCreate";
 import * as React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import Leaderboard from "./components/LeaderBoard";
 import Opponents from "./components/Opponents";
 import { useState } from "react";
@@ -92,20 +92,10 @@ function App() {
           />
         </>
       );
-    case "leaderboard":
-      return (
-        <Leaderboard
-          participants={game.leaderboard}
-          isHost={isHost(game, userId)}
-          sendJsonMessage={sendJsonMessage}
-          setPage={setPage}
-          setGame={setGame}
-        />
-      );
     case "game":
       return (
         <>
-          <Box flex="1" backgroundColor="#C0EAFC">
+          <Box flex="1">
             <Navbar
               isHost={isHost(game, userId)}
               isNotGameStart={isGameNotStart(game)}
@@ -113,7 +103,7 @@ function App() {
               name={name}
               sendJsonMessage={sendJsonMessage}
             />
-            <Box alignSelf="center" backgroundColor="#C0EAFC">
+            <Box alignSelf="center"bgGradient={`linear(to-r, #004052, #002029)`}>
               <Opponents
                 opponentsarray={generateOpponentArray(game, userId)}
                 cards={deck(game)}
@@ -125,6 +115,17 @@ function App() {
           </Box>
         </>
       );
+    case "leaderboard":
+      return (
+        <Leaderboard
+          participants={game.leaderboard}
+          isHost={isHost(game, userId)}
+          sendJsonMessage={sendJsonMessage}
+          setPage={setPage}
+          setGame={setGame}
+        />
+      );
+    
     default:
       return <></>;
   }

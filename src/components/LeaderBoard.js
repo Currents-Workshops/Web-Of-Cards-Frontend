@@ -13,10 +13,10 @@ export default function Leaderboard({
       minH="100vh"
       align="center"
       justify="center"
-      backgroundColor="#C0EAFC"
+      bgGradient={`linear(to-r, #004052, #002029)`}
     >
       <Box m="1rem" width="500px" height="500px">
-        <Text fontSize="3xl" align="center" color="black" fontWeight="bold">
+        <Text fontSize="3xl" align="center" color="white" fontWeight="bold" fontFamily={"DuneRise"}>
           LEADERBOARD
         </Text>
         <Stack spacing={2}>
@@ -27,13 +27,13 @@ export default function Leaderboard({
             align="center"
             backgroundColor="#00303D"
           >
-            <Box w="50%" p="0.75rem">
-              <Text fontSize="lg" color="white">
+            <Box w="30%" p="0.75rem">
+              <Text fontSize="lg" color="white" textAlign={"center"}>
                 RANK
               </Text>
             </Box>
-            <Box w="50%" p="0.75rem">
-              <Text fontSize="lg" color="white">
+            <Box w="70%" p="0.75rem">
+              <Text fontSize="lg" color="white" textAlign={"center"}>
                 NAME
               </Text>
             </Box>
@@ -48,13 +48,13 @@ export default function Leaderboard({
               align="center"
               backgroundColor="#00607A"
             >
-              <Box w="50%" p="0.5rem">
-                <Text fontSize="lg" color="white">
+              <Box w="30%" p="0.5rem">
+                <Text fontSize="lg" color="white" textAlign={"center"}>
                   {index + 1}.
                 </Text>
               </Box>
-              <Box w="50%" p="0.5rem">
-                <Text fontSize="lg" color="white">
+              <Box w="70%" p="0.5rem">
+                <Text fontSize="lg" color="white" textAlign={"center"}>
                   {participant.name}
                 </Text>
               </Box>

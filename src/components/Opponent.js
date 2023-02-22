@@ -10,13 +10,15 @@ export default function OpponentDisplay(props) {
         paddingTop="0.9rem"
         shadow="lg"
         align="center"
-        backgroundColor="#D3F4FA"
+        backgroundColor={props.isPlaying ? "#272C3D" : "#002029" }
         borderRadius="10px"
         justifyContent="center"
         marginBottom="1"
+        border={`1px solid white`}
+        transform={ !props.left ? `translate(12.5%)` : `translate(10%)` }
       >
         {props.isPlaying && (
-          <Text color="green" fontSize="22px" fontWeight="bold">
+          <Text color="#bfcfd4" fontSize="28px" fontWeight="bold">
             {props.name}
           </Text>
         )}

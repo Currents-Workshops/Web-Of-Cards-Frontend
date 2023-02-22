@@ -1,7 +1,8 @@
 
 
 import React from 'react';
-import { Box, Button, Flex, Input,  Stack  } from '@chakra-ui/react';
+import { Box, Button, HStack, Flex, Input,  Stack, Link, Image, Spacer, Text  } from '@chakra-ui/react';
+import { transparentize } from "@chakra-ui/theme-tools";
 
 export default function JoinCreate({name,room,setName,setRoom,sendJsonMessage}) {
 
@@ -9,24 +10,47 @@ export default function JoinCreate({name,room,setName,setRoom,sendJsonMessage}) 
     //const [room, setRoom] = React.useState('');
     const [nameborderfocus, setNameborderfocus] = React.useState(false);
     const [roomborderfocus, setroomborderfocus] = React.useState(false);
-    //console.log(name, room);
-    //console.log(nameborderfocus, roomborderfocus);
+    const image = "currents-23-logo-white"
      
 
     
 
     return (
         <Flex
-            bg="gray.100"
+            bgGradient={`linear(to-r, #004052, #002029)`}
             minH="100vh"
             align="center"
             justify="center"
+            width={"100%"}
         >
+            <HStack
+                h={"73px"}
+                borderBottomWidth={"1px"}
+                borderColor={"#00000011"}
+                bg={transparentize("gray.900", 0.7)}
+                py={8}
+                px={[4, 8, 16, 24, 32]}
+                pos={"fixed"}
+                top="0"
+                w={"100%"}
+                spacing={6}
+                backdropFilter={"auto"}
+                backdropBlur={"md"}
+                zIndex={1}
+            >
+                <Link href={"currents.nitt.edu"} style={{ cursor: "pointer" }}>
+                    <Image src={`/${image}.png`} alt={"Currents Logo"} width={45} height={45} />
+                </Link>
+                <Spacer />
+                <Text fontFamily={"DuneRise"} align="center">
+                    WEB OF CARDS
+                </Text>
+            </HStack>
             <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6}>
                 
                 <Box
                     rounded="lg"
-                    bg="blue.100"
+                    bg="#00303D"
                     boxShadow="lg"
                     p={8}
                 >
@@ -62,10 +86,10 @@ export default function JoinCreate({name,room,setName,setRoom,sendJsonMessage}) 
                         
                         />
                         <Button
-                            bg="blue.400"
+                            bg="rgba(0, 64, 82, 0.3)"
                             color="white"
                             _hover={{
-                                bg: "blue.500"
+                                bg: "rgba(0, 64, 82, 1)"
                             }}
                             onClick = {()=>{
                                 if (name && room) {
@@ -92,10 +116,10 @@ export default function JoinCreate({name,room,setName,setRoom,sendJsonMessage}) 
                             JOIN
                         </Button>
                         <Button
-                            bg="blue.400"
+                            bg="rgba(0, 64, 82, 0.3)"
                             color="white"
                             _hover={{
-                                bg: "blue.500"
+                                bg: "rgba(0, 64, 82, 1)"
                             }}
                             onClick = {()=>{
                                 if (name) {
