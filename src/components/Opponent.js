@@ -27,7 +27,7 @@ export default function OpponentDisplay(props) {
             {props.name}
           </Text>
         )}
-        {!props.isPlaying && (
+        {(!props.isPlaying && !props.isLost) && (
           <Text color="white" fontSize="22px" fontWeight="bold">
             {props.name}
           </Text>
