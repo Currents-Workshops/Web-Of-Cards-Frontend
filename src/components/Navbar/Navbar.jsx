@@ -1,9 +1,15 @@
 import "./Navbar.css";
+import { useState } from "react"; 
 // import { Link } from "react-router-dom";
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import { transparentize } from "@chakra-ui/theme-tools";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { CopyIcon } from "@chakra-ui/icons";
 
 const Navbar = ({ isHost, room, name, sendJsonMessage, isNotGameStart }) => {
+  const [copyText, setCopyText] = useState(null);
+  const [isCopied, setIsCopied] = useState(false);
+
   return (
     <nav className="navbar"
     >
@@ -22,12 +28,31 @@ const Navbar = ({ isHost, room, name, sendJsonMessage, isNotGameStart }) => {
         </Box>
         <Box alignItems={"center"}>
           <Flex flexDirection={"column"} alignItems={"center"}>
+              {/* <Box> */}
+
+                  {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M224 0c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224zM64 160c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64H64V224h64V160H64z"/></svg> */}
+              {/* </Box> */}
             <Text fontSize="3xl" fontWeight="bold" color="white">
               GAME CODE{" "}
+                
+              
             </Text>
-            <Text fontSize="2xl" fontWeight="bold" color="white">
+            <Flex>
+
+            <Text fontSize="2xl" fontWeight="bold" color="white"paddingRight={"5px"} >
               {room}
             </Text>
+          <CopyIcon _hover={{ cursor: "pointer", color: "blue.500" }} boxSize={"8"} paddingTop={"8px"} onClick={() => {
+            setIsCopied(true);
+              navigator.clipboard.writeText(room);
+              setCopyText("Copied!");
+              setTimeout(() => {
+                setCopyText(null);
+                setIsCopied(false);
+              }, 1000);
+            }}/>
+            </Flex>
+            {isCopied && <span>Copied!</span>}
           </Flex>
         </Box>
         <Box width={250}>
