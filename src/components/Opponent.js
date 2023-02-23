@@ -17,7 +17,7 @@ export default function OpponentDisplay(props) {
         border={`1px solid white`}
         transform={ !props.left ? `translate(12.5%)` : `translate(10%)` }
       >
-        {props.isPlaying && (
+        {props.isPlaying && !props.isLost && (
           <Text color="#bfcfd4" fontSize="28px" fontWeight="bold">
             {props.name}
           </Text>
