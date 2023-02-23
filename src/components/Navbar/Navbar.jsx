@@ -1,9 +1,6 @@
 import "./Navbar.css";
 import { useState } from "react"; 
-// import { Link } from "react-router-dom";
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
-import { transparentize } from "@chakra-ui/theme-tools";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { CopyIcon } from "@chakra-ui/icons";
 
 const Navbar = ({ isHost, room, name, sendJsonMessage, isNotGameStart }) => {

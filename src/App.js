@@ -8,12 +8,12 @@ import Opponents from "./components/Opponents";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import useWebSocket from "react-use-websocket";
-import generateOpponentArray from "./hook/opponent";
-import turn from "./hook/turn";
-import playerCards from "./hook/playerCards";
-import deck from "./hook/deck";
-import isHost from "./hook/host";
-import isGameNotStart from "./hook/isGameNotStart";
+import generateOpponentArray from "./helpers/opponent";
+import turn from "./helpers/turn";
+import playerCards from "./helpers/playerCards";
+import deck from "./helpers/deck";
+import isHost from "./helpers/host";
+import isGameNotStart from "./helpers/isGameNotStart";
 
 
 // Defining the WebSocket URL

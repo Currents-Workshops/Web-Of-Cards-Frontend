@@ -9,12 +9,6 @@ export default function Opponents(props) {
   useEffect(() => {
     console.log(props.opponentsarray)
     if (props.opponentsarray.length > 0) {
-      // setUsersList((prevList) => {
-      //   const filteredList = prevList.filter(
-      //     (user) => !props.opponentsarray.find(({ id }) => id === user.id)
-      //   );
-      //   return [...filteredList, ...props.opponentsarray];
-      // });
       setUsersList(props.opponentsarray)
     }
   }, [props.opponentsarray]);
@@ -129,12 +123,13 @@ export default function Opponents(props) {
         marginBottom="1"
         marginLeft="30%"
         marginRight="30%"
+        marginTop={"-200px"}
       >
         <Text fontSize="l" fontWeight="bold">
           {!props.turn ? "YOUR DECK" : "YOUR TURN"}
         </Text>
       </Flex>
-      <Flex align="center" justifyContent="center" marginRight="200">
+      <Flex align="center" justifyContent="center" >
         <Cards
           type={"player"}
           turn={props.turn}
