@@ -123,7 +123,7 @@ export default function Opponents(props) {
         marginBottom="1"
         marginLeft="30%"
         marginRight="30%"
-        marginTop={"-200px"}
+        marginTop={"-50px"}
       >
         <Text fontSize="l" fontWeight="bold">
           {!props.turn ? "YOUR DECK" : "YOUR TURN"}

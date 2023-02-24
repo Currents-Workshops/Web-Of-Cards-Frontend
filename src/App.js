@@ -77,7 +77,6 @@ function App() {
         // Handling other events
         default:
           if (data.data != null && data.data.user_id != null) setUserId(data.data.user_id);
-          if (data.data != null && data.data.message != null) //Notification({"title":data.data.message});
             break;
       }
     },
