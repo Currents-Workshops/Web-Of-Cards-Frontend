@@ -70,7 +70,7 @@ export default function Cards({
             <Flex heigth={"50px"} width={"800px"} overflowX={"scroll"} >
                   {cards.map((card, index) => {
                     return (
-                      <div className="playingCards" key={index}>                    
+                      <div className="playingCards" key={index} style={{"cursor": "pointer"}}>                    
                         <div
                           className={"card rank-" + card.number + " " + card.type}
                           onClick={
