@@ -1,13 +1,9 @@
-
-
 import React from 'react';
 import { Box, Button, HStack, Flex, Input,  Stack, Link, Image, Spacer, Text  } from '@chakra-ui/react';
 import { transparentize } from "@chakra-ui/theme-tools";
 
 export default function JoinCreate({name,room,setName,setRoom,sendJsonMessage}) {
 
-    //const [name, setName] = React.useState('');
-    //const [room, setRoom] = React.useState('');
     const [nameborderfocus, setNameborderfocus] = React.useState(false);
     const [roomborderfocus, setroomborderfocus] = React.useState(false);
     const image = "currents-23-logo-white"
